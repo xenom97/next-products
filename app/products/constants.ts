@@ -1,4 +1,5 @@
 import { GridColDef } from '@mui/x-data-grid'
+import formatCurrency from '../../utils/format-currency'
 
 export const PRODUCT_COLUMNS: GridColDef[] = [
   { field: 'id', headerName: 'ID', width: 70 },
@@ -14,11 +15,17 @@ export const PRODUCT_COLUMNS: GridColDef[] = [
     width: 150,
     type: 'number',
     valueFormatter({ value }) {
-      const formattedPrice = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-      }).format(+value)
-      return formattedPrice
+      return formatCurrency(value)
+    },
+  },
+  {
+    field: 'discountPercentage',
+    headerName: 'Discount (%)',
+    flex: 1,
+    minWidth: 150,
+    type: 'number',
+    valueFormatter({ value }) {
+      return value + '%'
     },
   },
   {

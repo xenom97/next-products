@@ -6,7 +6,7 @@ import '@fontsource/roboto/400.css'
 import '@fontsource/roboto/500.css'
 import '@fontsource/roboto/700.css'
 
-import ResponsiveDrawer from '@/components/ResponsiveDrawer'
+import ResponsiveDrawer from '@/app/layout/components/ResponsiveDrawer'
 
 const inter = Inter({ subsets: ['latin'] })
 

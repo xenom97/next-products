@@ -87,6 +87,7 @@ export default function Products() {
           paginationMode="server"
           rowCount={count}
           onPaginationModelChange={handlePaginationChange}
+          disableRowSelectionOnClick
         />
       </div>
     </div>
