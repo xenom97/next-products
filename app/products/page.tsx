@@ -18,7 +18,6 @@ export default function Products() {
   const [query, setQuery] = useState<string>('')
 
   const handlePaginationChange = ({ page, pageSize }: GridPaginationModel) => {
-    console.log('LOG: ~ handlePaginationChange:', { page, pageSize })
     setPagination({ page, pageSize })
   }
 
@@ -48,12 +47,12 @@ export default function Products() {
       if (timeoutId) {
         clearTimeout(timeoutId)
       }
-      timeoutId = setTimeout(fetchProducts, 500)
+      const delay = query ? 500 : 0
+      timeoutId = setTimeout(fetchProducts, delay)
     }
 
     debouncedFetchProducts()
 
-    console.log('LOG: ~ Products ~ pagination:', pagination)
     return () => {
       if (timeoutId) {
         clearTimeout(timeoutId)
