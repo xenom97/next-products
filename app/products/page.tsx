@@ -10,7 +10,7 @@ import { IProduct } from './models'
 export default function Products() {
   const [rows, setRows] = useState<IProduct[]>([])
   const [count, setCount] = useState<number>(0)
-  const [loading, setLoading] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(true)
   const [pagination, setPagination] = useState<GridPaginationModel>({
     page: 0,
     pageSize: 10,
@@ -83,12 +83,8 @@ export default function Products() {
           rows={rows}
           columns={PRODUCT_COLUMNS}
           loading={loading}
-          initialState={{
-            pagination: {
-              paginationModel: pagination,
-            },
-          }}
-          pageSizeOptions={[5, 10]}
+          pageSizeOptions={[5, 10, 25, 50]}
+          paginationModel={pagination}
           paginationMode="server"
           rowCount={count}
           onPaginationModelChange={handlePaginationChange}
