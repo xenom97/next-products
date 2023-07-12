@@ -88,6 +88,15 @@ export default function Products() {
           rowCount={count}
           onPaginationModelChange={handlePaginationChange}
           disableRowSelectionOnClick
+          initialState={{
+            filter: {
+              filterModel: {
+                items: [
+                  { field: 'price', operator: 'range', value: [0, 3000] },
+                ],
+              },
+            },
+          }}
         />
       </div>
     </div>
