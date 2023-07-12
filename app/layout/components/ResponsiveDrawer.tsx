@@ -18,6 +18,7 @@ import MenuIcon from '@mui/icons-material/Menu'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import { usePathname } from 'next/navigation'
+import GitHubIcon from '@mui/icons-material/GitHub'
 
 const drawerWidth = 240
 
@@ -27,8 +28,16 @@ const SidebarIcon = ({ label }: { label: string }) => {
       return <ChecklistIcon />
     case 'carts':
       return <ShoppingCartIcon />
+    case 'repository':
+      return <GitHubIcon />
   }
 }
+
+const MENU_ITEMS = [
+  { name: 'products', href: '/products' },
+  { name: 'carts', href: '/carts' },
+  { name: 'repository', href: 'https://github.com/xenom97/next-products' },
+]
 
 export default function ResponsiveDrawer({
   children,
@@ -47,16 +56,17 @@ export default function ResponsiveDrawer({
       <Toolbar />
       <Divider />
       <List>
-        {['products', 'carts'].map((text) => (
-          <ListItem key={text} disablePadding>
+        {MENU_ITEMS.map((item) => (
+          <ListItem key={item.name} disablePadding>
             <ListItemButton
-              href={`/${text}`}
-              selected={pathname.includes(text)}
+              href={item.href}
+              target={item.name === 'repository' ? '_blank' : '_self'}
+              selected={pathname.includes(item.href)}
             >
               <ListItemIcon>
-                <SidebarIcon label={text} />
+                <SidebarIcon label={item.name} />
               </ListItemIcon>
-              <ListItemText primary={text} className="capitalize" />
+              <ListItemText primary={item.name} className="capitalize" />
             </ListItemButton>
           </ListItem>
         ))}
