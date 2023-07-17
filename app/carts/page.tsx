@@ -27,8 +27,6 @@ export default function Carts() {
   }
 
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout | undefined
-
     const fetchCarts = async () => {
       try {
         setLoading(true)
@@ -47,20 +45,7 @@ export default function Carts() {
       }
     }
 
-    const debouncedFetchCarts = () => {
-      if (timeoutId) {
-        clearTimeout(timeoutId)
-      }
-      timeoutId = setTimeout(fetchCarts, 0)
-    }
-
-    debouncedFetchCarts()
-
-    return () => {
-      if (timeoutId) {
-        clearTimeout(timeoutId)
-      }
-    }
+    fetchCarts()
   }, [pagination])
 
   return (
